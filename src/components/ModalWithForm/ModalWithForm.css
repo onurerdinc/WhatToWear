@@ -6,9 +6,13 @@
   bottom: 0;
   background-color: #0000004d;
   display: flex;
-
   justify-content: center;
   align-items: center;
+  visibility: hidden;
+}
+
+.modal_opened {
+  visibility: visible;
 }
 
 .modal__title {
