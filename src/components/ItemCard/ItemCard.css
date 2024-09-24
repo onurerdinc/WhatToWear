@@ -9,9 +9,17 @@
 }
 
 .card__name {
+  font-size: 16px;
+  line-height: 20px;
+  margin-left: auto;
+  opacity: 0.6;
   position: absolute;
-  top: 15px;
-  margin: 0;
+  background-color: white;
+  padding-left: 12px;
+  padding-right: 12px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  border-radius: 4px;
 }
 
 .card__image {

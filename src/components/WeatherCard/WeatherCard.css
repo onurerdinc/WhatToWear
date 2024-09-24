@@ -7,15 +7,17 @@
 }
 
 .weather-card__temp {
+  color: white;
+  margin: 0;
   font-size: 36px;
   line-height: 40px;
   position: absolute;
   top: 20px;
   left: 16px;
-  margin: 0;
 }
 
 .weather-card__image {
+  padding: 0;
   object-fit: cover;
   object-position: right top;
   width: 100%;
