@@ -13,11 +13,15 @@
 }
 
 .header__username {
-  margin: 0;
+  padding-right: 12px;
 }
 
 .header__add-close-button {
-  margin: 0 20px 0 auto;
+  margin-left: auto;
+  border: none;
+  padding-right: 20px;
+  background: none;
+  font-weight: 700;
 }
 
 .header__user-container {
