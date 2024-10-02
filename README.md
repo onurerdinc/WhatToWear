@@ -1,8 +1,4 @@
-# React + Vite
+# What to Wear 
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+"What to Wear" is a location-based clothing recommendation app that provides personalized outfit suggestions by analyzing the user's current weather conditions. The project allows users to create and manage their digital wardrobe, with features for adding, editing, and deleting clothing items. Built with React.js for dynamic UI interactions and CSS for responsive design, this project enhances user experience through seamless weather-based recommendations.
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
