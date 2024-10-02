@@ -4,7 +4,7 @@ function SideBar() {
   return (
     <div className="sidebar">
       <img className="sidebar__avatar" src={avatar} alt="Default avatar" />
-      <p className="sidebar__username">Demet Yildirim</p>
+      <p className="sidebar__username">Onur Erdinc</p>
     </div>
   );
 }
