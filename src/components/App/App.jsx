@@ -10,6 +10,7 @@ import AddItemModal from "../AddItemModal/AddItemModal";
 import ItemModal from "../ItemModal/ItemModal";
 import Footer from "../Footer/Footer";
 import Profile from "../Profile/Profile";
+import DeleteModal from "../DeleteModal/DeleteModal.jsx";
 import { getWeather, filterWeatherData } from "../../utils/weatherApi";
 import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext";
 
@@ -35,6 +36,21 @@ function App() {
 
   const handleAddClick = () => {
     setActiveModal("add-garment");
+  };
+
+  const handleCardDelete = () => {
+    deleteItem(selectedCard._id)
+      .then(() => {
+        setClothingItems((prev) =>
+          prev.filter((item) => item._id !== selectedCard._id)
+        );
+        closeActiveModal();
+      })
+      .catch(console.error);
+  };
+
+  const handleDeleteCardClick = () => {
+    setActiveModal("delete-confirmation");
   };
 
   const handleOnAddItem = (item) => {
@@ -100,6 +116,13 @@ function App() {
           activeModal={activeModal}
           card={selectedCard}
           onClose={closeActiveModal}
+          confirmationModal={handleDeleteCardClick}
+        />
+        <DeleteModal
+          activeModal={activeModal}
+          onClose={closeActiveModal}
+          handleCardDelete={handleCardDelete}
+          selectedCard={selectedCard}
         />
       </CurrentTemperatureUnitContext.Provider>
     </div>
