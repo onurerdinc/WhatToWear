@@ -15,7 +15,7 @@ function ClothesSection({ handleAddClick, handleCardClick, clothingItems }) {
         </button>
       </div>
       <ul className="cards__list">
-        {defaultClothingItems.map((item) => {
+        {clothingItems.map((item) => {
           return (
             <ItemCard
               key={item._id}

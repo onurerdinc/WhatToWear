@@ -32,8 +32,8 @@ const AddItemModal = ({ onClose, onAddItem, isOpen }) => {
   }
   return (
     <ModalWithForm
-      title="Add garment"
-      buttonText="New garment"
+      title="New garment"
+      buttonText="Add garment"
       isOpen={isOpen}
       onClose={onClose}
       onSubmit={handleSubmit}
@@ -66,6 +66,9 @@ const AddItemModal = ({ onClose, onAddItem, isOpen }) => {
             className="modal__radio-input"
             name="option"
             id="hot"
+            value="hot"
+            checked={weather === "hot"}
+            onChange={handleWeatherChange}
           />
           Hot
         </label>
@@ -74,7 +77,10 @@ const AddItemModal = ({ onClose, onAddItem, isOpen }) => {
             type="radio"
             className="modal__radio-input"
             id="warm"
+            value="warm"
             name="option"
+            checked={weather === "warm"}
+            onChange={handleWeatherChange}
           />
           Warm
         </label>
@@ -83,7 +89,9 @@ const AddItemModal = ({ onClose, onAddItem, isOpen }) => {
             type="radio"
             className="modal__radio-input"
             id="cold"
+            value="cold"
             name="option"
+            checked={weather === "cold"}
             onChange={handleWeatherChange}
           />
           Cold

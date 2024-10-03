@@ -4,11 +4,11 @@ export const handleServerResponse = (res) => {
   return res.ok ? res.json() : Promise.reject(`Error:${res.status}`);
 };
 
-function getItems() {
+async function getItems() {
   return fetch(`${baseUrl}/items`).then(handleServerResponse);
 }
 
-function addItem({ name, weather, imageUrl }) {
+async function addItem({ name, weather, imageUrl }) {
   return fetch(`${baseUrl}/items`, {
     method: "POST",
     headers: {
@@ -22,7 +22,7 @@ function addItem({ name, weather, imageUrl }) {
   }).then(handleServerResponse);
 }
 
-function deleteItem(id) {
+async function deleteItem(id) {
   return fetch(`${baseUrl}/items/${id}`, {
     method: "DELETE",
     headers: {
