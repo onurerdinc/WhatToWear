@@ -1,7 +1,7 @@
 import { React, useState } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 
-const AddItemModal = ({ onClose, onAddItem, isOpen }) => {
+const AddItemModal = ({ onClose, onAddItem, isOpen, isLoading }) => {
   const [name, setName] = useState("");
   const [imageUrl, setUrl] = useState("");
   const [weather, setSelectedWeatherType] = useState("");
@@ -33,7 +33,7 @@ const AddItemModal = ({ onClose, onAddItem, isOpen }) => {
   return (
     <ModalWithForm
       title="New garment"
-      buttonText="Add garment"
+      buttonText={isLoading ? "Saving..." : "Add garment"}
       isOpen={isOpen}
       onClose={onClose}
       onSubmit={handleSubmit}
@@ -46,6 +46,8 @@ const AddItemModal = ({ onClose, onAddItem, isOpen }) => {
           id="name"
           placeholder="Name"
           onChange={handleNameChange}
+          value={name}
+          required
         />
       </label>
       <label htmlFor="imageUrl" className="modal__label">
@@ -56,6 +58,8 @@ const AddItemModal = ({ onClose, onAddItem, isOpen }) => {
           id="imageUrl"
           placeholder="Image URL"
           onChange={handleUrlChange}
+          value={imageUrl}
+          required
         />
       </label>
       <fieldset className="modal__radio-buttons">

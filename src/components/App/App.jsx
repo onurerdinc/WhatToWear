@@ -25,6 +25,7 @@ function App() {
   const [selectedCard, setSelectedCard] = useState({});
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
   const [clothingItems, setClothingItems] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleCardClick = (card) => {
     setActiveModal("preview");
@@ -55,12 +56,14 @@ function App() {
   };
 
   const handleOnAddItem = (item) => {
+    setIsLoading(true);
     addItem(item)
       .then((newItem) => {
         setClothingItems([newItem, ...clothingItems]);
         closeActiveModal();
       })
       .catch((err) => console.log(err));
+    setIsLoading(false);
   };
 
   const handleToggleSwitchChange = () => {
@@ -85,6 +88,21 @@ function App() {
       .catch(console.error);
   }, []);
 
+  useEffect(() => {
+    if (!activeModal) return;
+
+    const handleEscClose = (e) => {
+      if (e.key === "Escape") {
+        closeActiveModal();
+      }
+    };
+
+    document.addEventListener("keydown", handleEscClose);
+
+    return () => {
+      document.removeEventListener("keydown", handleEscClose);
+    };
+  }, [activeModal]);
   return (
     <div className="page">
       <CurrentTemperatureUnitContext.Provider
