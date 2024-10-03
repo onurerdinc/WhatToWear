@@ -1,7 +1,7 @@
 const baseUrl = "http://localhost:3001";
 
 export const handleServerResponse = (res) => {
-  return res.ok ? res.json() : Promise.reject(`Error:${res.status}`);
+  return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
 };
 
 async function getItems() {

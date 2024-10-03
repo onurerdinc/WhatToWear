@@ -1,14 +1,10 @@
-import handleServerResponse from "./api";
+import { handleServerResponse } from "./api";
 
 export const getWeather = async ({ latitude, longitude }, APIkey) => {
   const res = await fetch(
     `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=imperial&appid=${APIkey}`
   );
-  if (handleServerResponse) {
-    return res.json();
-  } else {
-    return Promise.reject(`Error : ${res.status}`);
-  }
+  return handleServerResponse(res);
 };
 
 export const filterWeatherData = (data) => {
