@@ -119,12 +119,6 @@
       "weather": "cold",
       "imageUrl": "https://cdni.llbean.net/is/image/wim/505183_1155_41?hei=1379&wid=1200&resMode=sharp2&defaultImage=llbprod/505183_1155_41",
       "_id": 31
-    },
-    {
-      "name": "sweater",
-      "weather": "cold",
-      "imageUrl": "https://cdni.llbean.net/is/image/wim/505183_1155_41?hei=1379&wid=1200&resMode=sharp2&defaultImage=llbprod/505183_1155_41",
-      "_id": 32
     }
   ]
 }

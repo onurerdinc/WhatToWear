@@ -62,8 +62,8 @@ function App() {
         setClothingItems([newItem, ...clothingItems]);
         closeActiveModal();
       })
-      .catch((err) => console.log(err));
-    setIsLoading(false);
+      .catch((err) => console.log(err))
+      .finally(() => setIsLoading(false));
   };
 
   const handleToggleSwitchChange = () => {
@@ -103,6 +103,7 @@ function App() {
       document.removeEventListener("keydown", handleEscClose);
     };
   }, [activeModal]);
+
   return (
     <div className="page">
       <CurrentTemperatureUnitContext.Provider
@@ -132,7 +133,6 @@ function App() {
               }
             />
           </Routes>
-
           <Footer />
         </div>
         <AddItemModal
