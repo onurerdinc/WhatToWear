@@ -11,6 +11,8 @@ import ItemModal from "../ItemModal/ItemModal";
 import Footer from "../Footer/Footer";
 import Profile from "../Profile/Profile";
 import DeleteModal from "../DeleteModal/DeleteModal.jsx";
+import RegisterModal from "../RegisterModal/RegisterModal.jsx";
+import LoginModal from "../LoginModal/LoginModal.jsx";
 import { getWeather, filterWeatherData } from "../../utils/weatherApi";
 import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext";
 import { getItems, addItem, deleteItem } from "../../utils/api.js";
