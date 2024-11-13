@@ -41,7 +41,7 @@ export const getUserProfile = () => {
       "Content-Type": "application/json",
       authorization: `Bearer ${token}`,
     },
-  }).then(checkResponse);
+  }).then(handleServerResponse);
 };
 
 export const editProfile = ({ name, avatar }, token) => {

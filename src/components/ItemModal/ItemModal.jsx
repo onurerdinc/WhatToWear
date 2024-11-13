@@ -9,8 +9,9 @@ function ItemModal({ isOpen, onClose, card, handleCardDelete }) {
   const itemDeleteButtonClassName = `item__delete-button ${
     isOwner ? "item__delete-button_visible" : "item__delete-button_hidden"
   }`;
+
   return (
-    <div className={`modal ${isOpen === "preview" && "modal_opened"}`}>
+    <div className={`modal ${isOpen && "modal_opened"}`}>
       <div className="modal__content modal__content_type_image">
         <button onClick={onClose} type="button" className="modal__close">
           <img src={CloseButton} alt="closeButton"></img>

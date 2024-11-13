@@ -32,7 +32,7 @@ function App() {
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
   const [currentUser, setCurrentUser] = useState({});
   const [clothingItems, setClothingItems] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLiked, setIsLiked] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const navigate = useNavigate();
 
@@ -125,6 +125,10 @@ function App() {
 
   const handleAddClick = () => {
     setActiveModal("add-garment");
+  };
+
+  const handleEditProfileClick = () => {
+    setActiveModal("edit");
   };
 
   const handleDeleteCardClick = () => {
@@ -232,7 +236,7 @@ function App() {
                       handleCardClick={handleCardClick}
                       handleAddClick={handleAddClick}
                       clothingItems={clothingItems}
-                      handleLogOutClick={handleLogOutClick}
+                      onSignOut={onSignOut}
                       handleEditProfileClick={handleEditProfileClick}
                       isLiked={isLiked}
                       handleCardLike={handleCardLike}

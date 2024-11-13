@@ -17,18 +17,11 @@ const LoginModal = ({ isOpen, onClose, onLogin, handleRegisterRoute }) => {
     }));
   };
 
-  function handleLogin(e) {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("logged in");
-    onLogin({ email: data.email, password: data.password })
-      .then(() => {
-        setEmail("");
-        setPassword("");
-      })
-      .catch((err) => {
-        console.error(err);
-      });
-  }
+
+    onLogin(data);
+  };
 
   return (
     <ModalWithForm
@@ -38,7 +31,7 @@ const LoginModal = ({ isOpen, onClose, onLogin, handleRegisterRoute }) => {
       redirectText="or Sign up"
       isOpen={isOpen}
       onClose={onClose}
-      onSubmit={handleLogin}
+      onSubmit={handleSubmit}
     >
       <label className="modal__label">
         Email

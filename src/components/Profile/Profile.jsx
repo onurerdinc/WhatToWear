@@ -10,13 +10,13 @@ function Profile({
   isLiked,
   handleCardLike,
   isLoggedIn,
-  handleLogOutClick,
+  onSignOut,
 }) {
   return (
     <div className="profile">
       <section className="profile__sidebar">
         <SideBar
-          handleLogOutClick={handleLogOutClick}
+          onSignOut={onSignOut}
           onEditProfileData={handleEditProfileClick}
           handleEditProfileClick={handleEditProfileClick}
         />

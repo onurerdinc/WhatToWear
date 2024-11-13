@@ -6,8 +6,8 @@ import "./EditProfileModal.css";
 
 export default function EditProfileModal({ isOpen, onClose, onProfileSubmit }) {
   const currentUser = useContext(CurrentUserContext);
-  const [name, setName] = useState("");
-  const [avatar, setAvatar] = useState("");
+  const [name, setName] = useState(currentUser.name || "");
+  const [avatar, setAvatar] = useState(currentUser.avatar || "");
 
   function handleAvatarChange(e) {
     setAvatar(e.target.value);
