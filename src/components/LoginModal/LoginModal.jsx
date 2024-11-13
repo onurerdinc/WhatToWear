@@ -20,7 +20,7 @@ const LoginModal = ({ isOpen, onClose, onLogin, handleRegisterRoute }) => {
   function handleLogin(e) {
     e.preventDefault();
     console.log("logged in");
-    onLogin({ email, password })
+    onLogin({ email: data.email, password: data.password })
       .then(() => {
         setEmail("");
         setPassword("");
