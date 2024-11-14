@@ -1,6 +1,6 @@
 import { baseUrl, handleServerResponse } from "./api";
 
-export async function checkToken(token) {
+async function checkToken(token) {
   return fetch(`${baseUrl}/users/me`, {
     method: "GET",
     headers: {
@@ -10,7 +10,7 @@ export async function checkToken(token) {
   }).then(handleServerResponse);
 }
 
-export async function register({ email, password, name, avatar }) {
+async function register({ email, password, name, avatar }) {
   return fetch(`${baseUrl}/signup`, {
     method: "POST",
     headers: {
@@ -21,7 +21,7 @@ export async function register({ email, password, name, avatar }) {
   }).then(handleServerResponse);
 }
 
-export const login = ({ email, password }) => {
+async function login({ email, password }) {
   const res = fetch(`${baseUrl}/signin`, {
     method: "POST",
     headers: {
@@ -31,9 +31,9 @@ export const login = ({ email, password }) => {
     body: JSON.stringify({ email, password }),
   }).then(handleServerResponse);
   return res;
-};
+}
 
-export const getUserProfile = () => {
+async function getUserProfile() {
   const token = localStorage.getItem("jwt");
   return fetch(`${baseUrl}/users/me`, {
     method: "GET",
@@ -42,9 +42,9 @@ export const getUserProfile = () => {
       authorization: `Bearer ${token}`,
     },
   }).then(handleServerResponse);
-};
+}
 
-export const editProfile = ({ name, avatar }, token) => {
+async function editProfile({ name, avatar }, token) {
   return fetch(`${baseUrl}/users/me`, {
     method: "PATCH",
     headers: {
@@ -53,7 +53,7 @@ export const editProfile = ({ name, avatar }, token) => {
     },
     body: JSON.stringify({ name, avatar }),
   }).then(handleServerResponse);
-};
+}
 
 async function deleteItem(id) {
   const token = localStorage.getItem("jwt");
@@ -66,7 +66,7 @@ async function deleteItem(id) {
   }).then(handleServerResponse);
 }
 
-export async function addCardLike(id, token) {
+async function addCardLike(id, token) {
   const res = await fetch(`${baseUrl}/items/${id}/likes`, {
     method: "PUT",
     headers: {
@@ -77,7 +77,7 @@ export async function addCardLike(id, token) {
   return handleServerResponse(res);
 }
 
-export async function removeCardLike(id, token) {
+async function removeCardLike(id, token) {
   const res = await fetch(`${baseUrl}/items/${id}/likes`, {
     method: "DELETE",
     headers: {
@@ -87,3 +87,5 @@ export async function removeCardLike(id, token) {
   });
   return handleServerResponse(res);
 }
+
+export { register, login, getUserProfile, editProfile };

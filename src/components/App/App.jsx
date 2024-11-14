@@ -18,7 +18,7 @@ import { getWeather, filterWeatherData } from "../../utils/weatherApi";
 import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext";
 import { getItems, addItem, addCardLike, deleteItem } from "../../utils/api.js";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext.jsx";
-import { register, login, getUserProfile, editProfile } from "../../utils/auth";
+import * as auth from "../../utils/auth";
 import EditProfileModal from "../EditProfileModal/EditProfileModal.jsx";
 
 function App() {
@@ -54,10 +54,10 @@ function App() {
 
   const onSignUp = ({ name, email, password, avatar }) => {
     const userProfile = { name, email, password, avatar };
-    register(userProfile).then((res) => {
+    auth.register(userProfile).then((res) => {
       console.log(res);
       setCurrentUser(userProfile);
-      login({ email, password });
+      auth.login({ email, password });
       setIsLoggedIn(true);
       closeActiveModal();
       navigate("/profile");
@@ -69,7 +69,7 @@ function App() {
       return;
     }
 
-    return login({ email, password }).then((res) => {
+    return auth.login({ email, password }).then((res) => {
       console.log(res);
       localStorage.setItem("jwt", res.token);
       setIsLoggedIn(true);
@@ -136,7 +136,7 @@ function App() {
   };
 
   const onProfileSubmit = ({ name, avatar }) => {
-    editProfile({ name, avatar }).then((res) => {
+    auth.editProfile({ name, avatar }).then((res) => {
       setCurrentUser(res);
       closeActiveModal();
     });
@@ -194,7 +194,7 @@ function App() {
   useEffect(() => {
     const token = localStorage.getItem("jwt");
     if (token) {
-      getUserProfile().then((res) => {
+      auth.getUserProfile().then((res) => {
         setCurrentUser(res.data);
         setIsLoggedIn(true);
       });
