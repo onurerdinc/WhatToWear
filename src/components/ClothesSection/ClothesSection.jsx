@@ -12,7 +12,7 @@ function ClothesSection({
   handleCardLike,
   isLoggedIn,
 }) {
-  const currentUser = useContext(currentUser);
+  const currentUser = useContext(CurrentUserContext);
 
   return (
     <div className="clothes-section">
@@ -28,7 +28,7 @@ function ClothesSection({
       <ul className="cards__list">
         {clothingItems &&
           clothingItems
-            .filter((item) => item.owner === currentUser._id)
+            .filter((item) => item.owner === currentUser?._id)
             .map((item) => {
               return (
                 <ItemCard

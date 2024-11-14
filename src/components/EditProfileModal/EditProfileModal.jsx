@@ -6,8 +6,8 @@ import "./EditProfileModal.css";
 
 export default function EditProfileModal({ isOpen, onClose, onProfileSubmit }) {
   const currentUser = useContext(CurrentUserContext);
-  const [name, setName] = useState(currentUser.name || "");
-  const [avatar, setAvatar] = useState(currentUser.avatar || "");
+  const [name, setName] = useState(currentUser?.name || "");
+  const [avatar, setAvatar] = useState(currentUser?.avatar || "");
 
   function handleAvatarChange(e) {
     setAvatar(e.target.value);
@@ -34,7 +34,7 @@ export default function EditProfileModal({ isOpen, onClose, onProfileSubmit }) {
         Name{" "}
         <input
           required
-          value={currentUser.name}
+          value={currentUser?.name}
           autoComplete="off"
           type="text"
           className="modal__input"
@@ -47,7 +47,7 @@ export default function EditProfileModal({ isOpen, onClose, onProfileSubmit }) {
         Avatar{" "}
         <input
           required
-          value={currentUser.avatar}
+          value={currentUser?.avatar}
           autoComplete="off"
           type="url"
           className="modal__input"

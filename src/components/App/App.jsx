@@ -142,15 +142,14 @@ function App() {
     });
   };
 
-  const handleOnAddItem = (item) => {
-    setIsLoading(true);
-    addItem(item)
-      .then((newItem) => {
-        setClothingItems([newItem, ...clothingItems]);
-        closeActiveModal();
-      })
-      .catch((err) => console.log(err))
-      .finally(() => setIsLoading(false));
+  const handleOnAddItem = async (item) => {
+    try {
+      const newItem = await addItem(item);
+      setClothingItems([newItem, ...clothingItems]);
+      closeActiveModal();
+    } catch (err) {
+      return console.log(err);
+    }
   };
 
   const handleToggleSwitchChange = () => {

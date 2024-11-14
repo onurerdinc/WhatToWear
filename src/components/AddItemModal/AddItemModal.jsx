@@ -3,7 +3,7 @@ import ModalWithForm from "../ModalWithForm/ModalWithForm.jsx";
 import "../ModalWithForm/ModalWithForm.css";
 import "./AddItemModal.css";
 
-const AddItemModal = ({ closeActiveModal, addItem, isOpen }) => {
+const AddItemModal = ({ closeActiveModal, onAddItem, isOpen }) => {
   const [name, setName] = useState("");
   const [imageUrl, setUrl] = useState("");
   const [weather, setSelectedWeatherType] = useState("");
@@ -24,7 +24,7 @@ const AddItemModal = ({ closeActiveModal, addItem, isOpen }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    addItem({ name, imageUrl, weather }, resetForm);
+    onAddItem({ name, imageUrl, weather }, resetForm);
   };
 
   function resetForm() {
@@ -39,6 +39,7 @@ const AddItemModal = ({ closeActiveModal, addItem, isOpen }) => {
       onClose={closeActiveModal}
       isOpen={isOpen}
       onSubmit={handleSubmit}
+      buttonText="Add Garment"
     >
       <label htmlFor="name" className="modal__label">
         Name{" "}
