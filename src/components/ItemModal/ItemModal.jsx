@@ -28,6 +28,9 @@ function ItemModal({ isOpen, onClose, card, handleCardDelete }) {
           >
             Delete item
           </button>
+          {!isOwner && (
+            <p className="modal__no-permission">You cannot delete this item.</p>
+          )}
         </div>
       </div>
     </div>

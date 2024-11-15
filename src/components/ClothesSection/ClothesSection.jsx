@@ -1,4 +1,3 @@
-import { defaultClothingItems } from "../../utils/constants.js";
 import "./ClothesSection.css";
 import ItemCard from "../ItemCard/ItemCard.jsx";
 import { useContext } from "react";
@@ -15,7 +14,7 @@ function ClothesSection({
   const currentUser = useContext(CurrentUserContext);
 
   const userItems = clothingItems.filter(
-    (item) => item.owner === currentUser?._id
+    (item) => item.data && item.data.owner === currentUser?._id
   );
 
   return (
@@ -33,8 +32,8 @@ function ClothesSection({
         {userItems.length > 0 ? (
           userItems.map((item) => (
             <ItemCard
-              key={item?._id}
-              item={item}
+              key={item?.data._id}
+              item={item.data}
               handleCardClick={handleCardClick}
               handleCardLike={handleCardLike}
               isLiked={isLiked}

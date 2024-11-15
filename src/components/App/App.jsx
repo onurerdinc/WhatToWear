@@ -107,7 +107,7 @@ function App() {
     deleteItem(selectedCard._id)
       .then(() => {
         setClothingItems((prev) =>
-          prev.filter((item) => item._id !== selectedCard._id)
+          prev.filter((item) => item?._id !== selectedCard?._id)
         );
         closeActiveModal();
       })
@@ -142,14 +142,11 @@ function App() {
     });
   };
 
-  const handleOnAddItem = async (item) => {
-    try {
-      const newItem = await addItem(item);
-      setClothingItems([newItem, ...clothingItems]);
-      closeActiveModal();
-    } catch (err) {
-      return console.log(err);
-    }
+  const handleOnAddItem = async (newItem) => {
+    const token = localStorage.getItem("jwt");
+    const addedItem = await addItem(newItem, token);
+    setClothingItems((prevItems) => [addedItem.data, ...prevItems]);
+    closeActiveModal();
   };
 
   const handleToggleSwitchChange = () => {
@@ -219,7 +216,7 @@ function App() {
                 element={
                   <Main
                     weatherData={weatherData}
-                    handleCardClick={handleCardClick}
+                    onCardClick={handleCardClick}
                     clothingItems={clothingItems}
                     handleCardLike={handleCardLike}
                     isLiked={isLiked}
@@ -232,13 +229,13 @@ function App() {
                 element={
                   <ProtectedRoute isLoggedIn={isLoggedIn}>
                     <Profile
-                      handleCardClick={handleCardClick}
+                      onCardClick={handleCardClick}
                       handleAddClick={handleAddClick}
                       clothingItems={clothingItems}
                       onSignOut={onSignOut}
                       handleEditProfileClick={handleEditProfileClick}
                       isLiked={isLiked}
-                      handleCardLike={handleCardLike}
+                      onCardLike={handleCardLike}
                       isLoggedIn={isLoggedIn}
                     />
                   </ProtectedRoute>
@@ -256,7 +253,7 @@ function App() {
             activeModal={activeModal}
             card={selectedCard}
             onClose={closeActiveModal}
-            confirmationModal={handleDeleteCardClick}
+            handleDeleteCardClick={handleDeleteCardClick}
           />
           <DeleteModal
             activeModal={activeModal}

@@ -6,9 +6,9 @@ import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnit
 
 function Main({
   weatherData,
-  handleCardClick,
+  onCardClick,
   clothingItems,
-  handleCardLike,
+  onCardLike,
   isLiked,
   isLoggedIn,
 }) {
@@ -32,9 +32,9 @@ function Main({
                 <ItemCard
                   key={item._id}
                   item={item}
-                  onCardClick={handleCardClick}
+                  onCardClick={onCardClick}
                   clothingItems={clothingItems}
-                  handleCardLike={handleCardLike}
+                  onCardLike={onCardLike}
                   isLiked={isLiked}
                   isLoggedIn={isLoggedIn}
                 />

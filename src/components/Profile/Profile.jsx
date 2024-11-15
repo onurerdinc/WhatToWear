@@ -4,14 +4,15 @@ import ClothesSection from "../ClothesSection/ClothesSection.jsx";
 
 function Profile({
   handleAddClick,
-  handleCardClick,
+  onCardClick,
   clothingItems,
   handleEditProfileClick,
   isLiked,
-  handleCardLike,
+  onCardLike,
   isLoggedIn,
   onSignOut,
 }) {
+  console.log(clothingItems);
   return (
     <div className="profile">
       <section className="profile__sidebar">
@@ -25,9 +26,9 @@ function Profile({
         <ClothesSection
           clothingItems={clothingItems}
           handleAddClick={handleAddClick}
-          handleCardClick={handleCardClick}
+          onCardClick={onCardClick}
           isLiked={isLiked}
-          handleCardLike={handleCardLike}
+          onCardLike={onCardLike}
           isLoggedIn={isLoggedIn}
         />
       </section>
