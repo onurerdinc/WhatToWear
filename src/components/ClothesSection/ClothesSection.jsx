@@ -14,6 +14,10 @@ function ClothesSection({
 }) {
   const currentUser = useContext(CurrentUserContext);
 
+  const userItems = clothingItems.filter(
+    (item) => item.owner === currentUser?._id
+  );
+
   return (
     <div className="clothes-section">
       <div className="clothes-section__header">
@@ -26,21 +30,20 @@ function ClothesSection({
         </button>
       </div>
       <ul className="cards__list">
-        {clothingItems &&
-          clothingItems
-            .filter((item) => item.owner === currentUser?._id)
-            .map((item) => {
-              return (
-                <ItemCard
-                  key={item._id}
-                  item={item}
-                  handleCardClick={handleCardClick}
-                  isLiked={isLiked}
-                  handleCardLike={handleCardLike}
-                  isLoggedIn={isLoggedIn}
-                />
-              );
-            })}
+        {userItems.length > 0 ? (
+          userItems.map((item) => (
+            <ItemCard
+              key={item?._id}
+              item={item}
+              handleCardClick={handleCardClick}
+              handleCardLike={handleCardLike}
+              isLiked={isLiked}
+              isLoggedIn={isLoggedIn}
+            />
+          ))
+        ) : (
+          <p>No items found</p>
+        )}
       </ul>
     </div>
   );
