@@ -16,7 +16,13 @@ import RegisterModal from "../RegisterModal/RegisterModal.jsx";
 import LoginModal from "../LoginModal/LoginModal.jsx";
 import { getWeather, filterWeatherData } from "../../utils/weatherApi";
 import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext";
-import { getItems, addItem, addCardLike, deleteItem } from "../../utils/api.js";
+import {
+  getItems,
+  addItem,
+  addCardLike,
+  deleteItem,
+  getUserInfo,
+} from "../../utils/api.js";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext.jsx";
 import * as auth from "../../utils/auth";
 import EditProfileModal from "../EditProfileModal/EditProfileModal.jsx";
@@ -65,22 +71,16 @@ function App() {
   };
 
   const onLogin = ({ email, password }) => {
-    if (!email || !password) {
-      return;
-    }
-
-    return auth.login({ email, password }).then((res) => {
+    auth.login({ email, password }).then((res) => {
       localStorage.setItem("jwt", res.token);
-      setIsLoggedIn(true);
-      setCurrentUser(res.user);
+      auth.getUserProfile(res.token).then((userProfile) => {
+        setCurrentUser(userProfile);
+        setIsLoggedIn(true);
+      });
       closeActiveModal();
       navigate("/profile");
     });
   };
-
-  useEffect(() => {
-    console.log(currentUser); // Logs when currentUser changes
-  }, [currentUser]);
 
   const onSignOut = () => {
     localStorage.removeItem("jwt");

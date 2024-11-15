@@ -55,37 +55,4 @@ async function editProfile({ name, avatar }, token) {
   }).then(handleServerResponse);
 }
 
-async function deleteItem(id) {
-  const token = localStorage.getItem("jwt");
-  return fetch(`${baseUrl}/items/${id}`, {
-    method: "DELETE",
-    headers: {
-      "Content-Type": "application/json",
-      authorization: `Bearer ${token}`,
-    },
-  }).then(handleServerResponse);
-}
-
-async function addCardLike(id, token) {
-  const res = await fetch(`${baseUrl}/items/${id}/likes`, {
-    method: "PUT",
-    headers: {
-      "Content-Type": "application/json",
-      authorization: `Bearer ${token}`,
-    },
-  });
-  return handleServerResponse(res);
-}
-
-async function removeCardLike(id, token) {
-  const res = await fetch(`${baseUrl}/items/${id}/likes`, {
-    method: "DELETE",
-    headers: {
-      "Content-Type": "application/json",
-      authorization: `Bearer ${token}`,
-    },
-  });
-  return handleServerResponse(res);
-}
-
 export { register, login, getUserProfile, editProfile };

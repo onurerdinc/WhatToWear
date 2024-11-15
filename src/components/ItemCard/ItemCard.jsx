@@ -1,44 +1,46 @@
+import React from "react";
 import "../ItemCard/ItemCard.css";
-import { useContext } from "react";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
+import { useState, useContext } from "react";
+import LikeImage from "..//../assets/LikeImage.png";
+import LikedImage from "../../assets/LikedImage.png";
 
-function ItemCard({ item, onCardClick, onCardLike }) {
+const ItemCard = ({ item, onSelectCard, isLoggedIn, onCardLike }) => {
   const currentUser = useContext(CurrentUserContext);
-
-  const isLoggedIn = !!currentUser?._id;
-
-  const isLiked = item.likes.some((_id) => _id === currentUser?._id);
-  const itemLikeButtonClassName = `card__like-button ${
-    isLiked ? "card__like-button_active" : ""
-  }`;
-
-  const handleLike = () => {
-    onCardLike({ _id: item?._id, isLiked: isLiked });
-  };
-
-  const handleCardClick = () => {
-    onCardClick(item);
-  };
+  console.log(item);
+  const isLiked = item.likes.some((id) => id === currentUser?._id);
 
   return (
-    <li className="card">
-      <div className="card__info">
-        <h2 className="card__name">{item?.name}</h2>
-        {isLoggedIn && (
-          <button
-            className={itemLikeButtonClassName}
-            onClick={handleLike}
-          ></button>
-        )}
+    <div className="cards__container">
+      <div className="cards__item_container">
+        <div className="cards__item_top-wrapper">
+          <div className="cards__title_frame">
+            <h2 className="cards__title">{item.name}</h2>
+          </div>
+          {isLoggedIn ? (
+            <button
+              onClick={() => onCardLike(item._id, isLiked)}
+              className="cards__like-wrapper"
+            >
+              <img
+                src={isLiked ? LikedImage : LikeImage}
+                alt="like button"
+                className="cards__like"
+              />
+            </button>
+          ) : (
+            ""
+          )}
+        </div>
+        <img
+          className="cards__image"
+          alt={item.name}
+          src={item.imageUrl}
+          onClick={() => onSelectCard(item)}
+        ></img>
       </div>
-      <img
-        onClick={handleCardClick}
-        className="card__image"
-        src={item.imageUrl}
-        alt={item.name}
-      />
-    </li>
+    </div>
   );
-}
+};
 
 export default ItemCard;
