@@ -70,7 +70,6 @@ function App() {
     }
 
     return auth.login({ email, password }).then((res) => {
-      console.log(res);
       localStorage.setItem("jwt", res.token);
       setIsLoggedIn(true);
       setCurrentUser(res.user);
@@ -78,6 +77,10 @@ function App() {
       navigate("/profile");
     });
   };
+
+  useEffect(() => {
+    console.log(currentUser); // Logs when currentUser changes
+  }, [currentUser]);
 
   const onSignOut = () => {
     localStorage.removeItem("jwt");
@@ -193,6 +196,7 @@ function App() {
       auth.getUserProfile().then((res) => {
         setCurrentUser(res.data);
         setIsLoggedIn(true);
+        console.log(res);
       });
     }
   }, []);

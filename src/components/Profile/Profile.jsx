@@ -12,7 +12,6 @@ function Profile({
   isLoggedIn,
   onSignOut,
 }) {
-  console.log(clothingItems);
   return (
     <div className="profile">
       <section className="profile__sidebar">

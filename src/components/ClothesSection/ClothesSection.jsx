@@ -11,11 +11,14 @@ function ClothesSection({
   handleCardLike,
   isLoggedIn,
 }) {
+  console.log(clothingItems);
   const currentUser = useContext(CurrentUserContext);
+  console.log(currentUser);
 
   const userItems = clothingItems.filter(
-    (item) => item.data && item.data.owner === currentUser?._id
+    (item) => item?.owner === currentUser?._id
   );
+  console.log(userItems);
 
   return (
     <div className="clothes-section">
