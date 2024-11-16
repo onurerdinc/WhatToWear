@@ -8,17 +8,14 @@ function ClothesSection({
   handleCardClick,
   clothingItems,
   isLiked,
-  handleCardLike,
+  onCardLike,
   isLoggedIn,
 }) {
-  // console.log(clothingItems);
   const currentUser = useContext(CurrentUserContext);
-  // console.log(currentUser);
 
   const userItems = clothingItems.filter(
     (item) => item?.owner === currentUser?._id
   );
-  // console.log(userItems);
 
   return (
     <div className="clothes-section">
@@ -38,7 +35,7 @@ function ClothesSection({
               key={item?._id}
               item={item}
               handleCardClick={handleCardClick}
-              handleCardLike={handleCardLike}
+              onCardLike={onCardLike}
               isLiked={isLiked}
               isLoggedIn={isLoggedIn}
             />

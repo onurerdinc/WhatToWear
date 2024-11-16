@@ -5,9 +5,9 @@ import { useState, useContext } from "react";
 import LikeImage from "..//../assets/LikeImage.png";
 import LikedImage from "../../assets/LikedImage.png";
 
-const ItemCard = ({ item, onSelectCard, isLoggedIn, onCardLike }) => {
+const ItemCard = ({ item, onCardClick, isLoggedIn, onCardLike }) => {
   const currentUser = useContext(CurrentUserContext);
-  console.log(item);
+
   const isLiked = item.likes.some((id) => id === currentUser?._id);
 
   return (
@@ -36,7 +36,7 @@ const ItemCard = ({ item, onSelectCard, isLoggedIn, onCardLike }) => {
           className="cards__image"
           alt={item.name}
           src={item.imageUrl}
-          onClick={() => onSelectCard(item)}
+          onClick={() => onCardClick(item)}
         ></img>
       </div>
     </div>

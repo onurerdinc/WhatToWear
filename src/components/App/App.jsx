@@ -22,6 +22,7 @@ import {
   addCardLike,
   deleteItem,
   getUserInfo,
+  removeCardLike,
 } from "../../utils/api.js";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext.jsx";
 import * as auth from "../../utils/auth";
@@ -139,10 +140,15 @@ function App() {
   };
 
   const onProfileSubmit = ({ name, avatar }) => {
-    auth.editProfile({ name, avatar }).then((res) => {
-      setCurrentUser(res);
-      closeActiveModal();
-    });
+    const token = localStorage.getItem("jwt");
+
+    auth
+      .editProfile({ name, avatar }, token)
+      .then((res) => {
+        setCurrentUser(res);
+        closeActiveModal();
+      })
+      .catch((err) => console.error(err));
   };
 
   const handleOnAddItem = async (newItem) => {
@@ -196,7 +202,6 @@ function App() {
       auth.getUserProfile().then((res) => {
         setCurrentUser(res.data);
         setIsLoggedIn(true);
-        console.log(res);
       });
     }
   }, []);
@@ -222,7 +227,7 @@ function App() {
                     weatherData={weatherData}
                     onCardClick={handleCardClick}
                     clothingItems={clothingItems}
-                    handleCardLike={handleCardLike}
+                    onCardLike={handleCardLike}
                     isLiked={isLiked}
                     isLoggedIn={isLoggedIn}
                   />
@@ -254,10 +259,10 @@ function App() {
             onAddItem={handleOnAddItem}
           />
           <ItemModal
-            activeModal={activeModal}
+            isOpen={activeModal}
             card={selectedCard}
             onClose={closeActiveModal}
-            handleDeleteCardClick={handleDeleteCardClick}
+            handleCardDelete={handleDeleteCardClick}
           />
           <DeleteModal
             activeModal={activeModal}
