@@ -95,13 +95,17 @@ function App() {
     return !isLiked
       ? addCardLike(_id, token).then((updatedCard) => {
           setClothingItems((cards) =>
-            cards.map((item) => (item._id === _id ? updatedCard : item))
+            cards.map((item) =>
+              item._id === _id ? { ...item, likes: updatedCard.likes } : item
+            )
           );
           setIsLiked(true);
         })
       : removeCardLike(_id, token).then((updatedCard) => {
           setClothingItems((cards) =>
-            cards.map((item) => (item._id === _id ? updatedCard : item))
+            cards.map((item) =>
+              item._id === _id ? { ...item, likes: updatedCard.likes } : item
+            )
           );
           setIsLiked(false);
         });

@@ -8,7 +8,8 @@ import LikedImage from "../../assets/LikedImage.png";
 const ItemCard = ({ item, onCardClick, isLoggedIn, onCardLike }) => {
   const currentUser = useContext(CurrentUserContext);
 
-  const isLiked = item.likes.some((id) => id === currentUser?._id);
+  const isLiked =
+    item.likes && currentUser ? item.likes.includes(currentUser?._id) : false;
 
   return (
     <div className="cards__container">
