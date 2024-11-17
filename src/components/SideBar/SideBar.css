@@ -1,63 +1,58 @@
-.sidebar__avatar-container {
-  display: flex;
-  gap: 16px;
+.sidebar {
+  width: 229px;
+  height: 138px;
 }
-.sidebar__user_avatar {
-  width: 56px;
-  height: 56px;
-  margin-right: 16px;
-  border: 1px solid rgba(0, 0, 0, 0.5);
-  border-radius: 50%;
-  background-color: rgba(0, 0, 0, 0.2);
+
+.sidebar__user-info {
+  display: flex;
+  align-items: flex-start;
+  margin-left: 0;
 }
 
 .sidebar__username {
-  font-family: "CabinetGrotesk-Medium";
+  font-family: Cabinet Grotesk;
   font-size: 20px;
   font-weight: 700;
   line-height: 24.8px;
   text-align: left;
+  margin-left: 15px;
+  font-size: 20px;
+  line-height: 24.8 px;
+}
+
+.sidebar__user_avatar {
+  margin: 0px 16px 0px 40px;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
 }
 
 .sidebar__buttons {
   display: flex;
   flex-direction: column;
-}
-
-.sidebar__logout {
-  font-family: "CabinetGrotesk-Medium";
-  font-size: 18px;
-  font-weight: 700;
-  line-height: 24.8px;
   text-align: left;
-  margin-top: 8px;
-  border: none;
-  background: none;
+  margin-left: 40px;
   padding: 0;
-}
-
-.sidebar__logout:hover {
-  cursor: pointer;
 }
 
 .sidebar__change-profile {
-  font-family: "CabinetGrotesk-Medium";
-  font-size: 18px;
-  font-weight: 700;
-  line-height: 24.8px;
-  text-align: left;
-  margin-bottom: 0;
+  background-color: #f3f3f3;
+  font-family: "CabinetGrotesk", sans-serif;
+  margin-bottom: 8px;
+  margin-top: 24px;
+
+  font-size: 20px;
   border: none;
-  background: none;
+  margin-left: 0;
   padding: 0;
 }
 
-.sidebar__change-profile:hover {
-  cursor: pointer;
-}
-
-@media screen and (max-width: 600px) {
-  .sidebar {
-    display: none;
-  }
+.sidebar__logout {
+  background-color: #f3f3f3;
+  font-family: "CabinetGrotesk", sans-serif;
+  margin-top: 10px;
+  font-size: 20px;
+  border: none;
+  padding: 0;
+  margin-right: 0px;
 }
