@@ -1,15 +1,13 @@
 import "./DeleteModal.css";
 
-function DeleteModal({ activeModal, onClose, handleCardDelete, selectedCard }) {
+function DeleteModal({ isOpen, onClose, handleCardDelete, selectedCard }) {
   const onCardDelete = () => {
     handleCardDelete(selectedCard);
   };
 
   return (
     <div
-      className={`modal ${
-        activeModal === "delete-confirmation" && "modal_opened"
-      }`}
+      className={`modal ${isOpen === "delete-confirmation" && "modal_opened"}`}
     >
       <div className="modal__content modal__content_type_delete">
         <button className="modal__close" type="button" onClick={onClose} />

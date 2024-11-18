@@ -62,7 +62,6 @@ function App() {
   const onSignUp = ({ name, email, password, avatar }) => {
     const userProfile = { name, email, password, avatar };
     auth.register(userProfile).then((res) => {
-      console.log(res);
       setCurrentUser(userProfile);
       auth.login({ email, password });
       setIsLoggedIn(true);
@@ -123,8 +122,8 @@ function App() {
   };
 
   const handleCardClick = (card) => {
-    setActiveModal("preview");
     setSelectedCard(card);
+    setActiveModal("preview");
   };
 
   const closeActiveModal = () => {
@@ -194,21 +193,29 @@ function App() {
     };
 
     document.addEventListener("keydown", handleEscClose);
+    document.addEventListener("click", handleEscClose);
 
     return () => {
       document.removeEventListener("keydown", handleEscClose);
+      document.addEventListener("click", handleEscClose);
     };
   }, [activeModal]);
 
   useEffect(() => {
     const token = localStorage.getItem("jwt");
     if (token) {
-      auth.getUserProfile().then((res) => {
-        setCurrentUser(res.data);
-        setIsLoggedIn(true);
-      });
+      auth
+        .getUserProfile()
+        .then((res) => {
+          setCurrentUser(res);
+          setIsLoggedIn(true);
+        })
+        .catch((err) => {
+          console.error("Error fetching user profile:", err);
+        });
     }
   }, []);
+  console.log(currentUser?.name);
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
@@ -222,6 +229,7 @@ function App() {
               weatherData={weatherData}
               handleSignupClick={handleSignupClick}
               handleLoginClick={handleLoginClick}
+              isLoggedIn={isLoggedIn}
             />
             <Routes>
               <Route
@@ -260,16 +268,16 @@ function App() {
           <AddItemModal
             onClose={closeActiveModal}
             isOpen={activeModal === "add-garment"}
-            onAddItem={handleOnAddItem}
+            addItem={handleOnAddItem}
           />
           <ItemModal
-            isOpen={activeModal}
+            isOpen={activeModal === "preview"}
             card={selectedCard}
             onClose={closeActiveModal}
             handleCardDelete={handleDeleteCardClick}
           />
           <DeleteModal
-            activeModal={activeModal}
+            isOpen={activeModal}
             onClose={closeActiveModal}
             handleCardDelete={handleCardDelete}
             selectedCard={selectedCard}
