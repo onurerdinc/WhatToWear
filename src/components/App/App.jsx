@@ -215,7 +215,6 @@ function App() {
         });
     }
   }, []);
-  console.log(currentUser?.name);
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
