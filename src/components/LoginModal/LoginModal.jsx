@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import "../ModalWithForm/ModalWithForm.css";
-import "./LoginModal.css";
 
 const LoginModal = ({ isOpen, onClose, onLogin, handleRegisterRoute }) => {
   const [data, setData] = useState({
@@ -19,26 +18,32 @@ const LoginModal = ({ isOpen, onClose, onLogin, handleRegisterRoute }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
     onLogin(data);
   };
 
   return (
     <ModalWithForm
       title="Log in"
-      name="login"
       buttonText="Log in"
-      redirectText="or Sign up"
       isOpen={isOpen}
       onClose={onClose}
       onSubmit={handleSubmit}
+      buttonClass="modal__submit"
+      redirectButton={
+        <button
+          type="button"
+          onClick={handleRegisterRoute}
+          className="modal__redirect-btn"
+        >
+          Or Sign Up
+        </button>
+      }
     >
       <label className="modal__label">
         Email
         <input
           type="email"
           className="modal__input"
-          id="user-email"
           name="email"
           placeholder="Email"
           value={data.email}
@@ -51,7 +56,6 @@ const LoginModal = ({ isOpen, onClose, onLogin, handleRegisterRoute }) => {
         <input
           type="password"
           className="modal__input"
-          id="user-password"
           name="password"
           placeholder="Password"
           value={data.password}
@@ -59,13 +63,6 @@ const LoginModal = ({ isOpen, onClose, onLogin, handleRegisterRoute }) => {
           required
         />
       </label>
-      <button
-        type="button"
-        onClick={handleRegisterRoute}
-        className="modal__login-btn"
-      >
-        Or Sign Up
-      </button>
     </ModalWithForm>
   );
 };

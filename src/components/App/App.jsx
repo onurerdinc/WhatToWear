@@ -62,9 +62,7 @@ function App() {
   const onSignUp = ({ name, email, password, avatar }) => {
     const userProfile = { name, email, password, avatar };
     auth.register(userProfile).then((res) => {
-      setCurrentUser(userProfile);
-      auth.login({ email, password });
-      setIsLoggedIn(true);
+      onLogin({ email, password });
       closeActiveModal();
     });
   };

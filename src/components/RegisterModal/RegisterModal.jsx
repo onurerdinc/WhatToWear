@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import "../ModalWithForm/ModalWithForm.css";
-import "./RegisterModal.css";
 
 const RegisterModal = ({ isOpen, onRegister, handleLoginRoute, onClose }) => {
   const [email, setEmail] = useState("");
@@ -34,11 +33,19 @@ const RegisterModal = ({ isOpen, onRegister, handleLoginRoute, onClose }) => {
     <ModalWithForm
       isOpen={isOpen}
       title="Sign Up"
-      name="register"
       buttonText="Sign Up"
-      redirectText="or Log in"
+      buttonClass="modal__submit"
       onClose={onClose}
       onSubmit={handleRegister}
+      redirectButton={
+        <button
+          type="button"
+          onClick={handleRegister}
+          className="modal__redirect-btn"
+        >
+          Or Login
+        </button>
+      }
     >
       <div className="form__signup">
         <label htmlFor="email" className="modal__label">
@@ -93,13 +100,6 @@ const RegisterModal = ({ isOpen, onRegister, handleLoginRoute, onClose }) => {
             required
           />
         </label>
-        <button
-          type="button"
-          onClick={handleLoginRoute}
-          className="modal__login-btn"
-        >
-          Log In
-        </button>
       </div>
     </ModalWithForm>
   );
