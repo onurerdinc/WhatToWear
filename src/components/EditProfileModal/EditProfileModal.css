@@ -1,3 +1,27 @@
-.title {
+.modal__save-button {
+  background-color: black;
+}
+
+.modal__input {
+  font-family: Cabinet Grotesk;
   font-size: 16px;
+  font-weight: 700;
+  line-height: 20px;
+  text-align: left;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+}
+
+.modal__label {
+  font-family: Cabinet Grotesk;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 20px;
+  text-align: left;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+}
+
+title {
+  margin-top: 28px;
 }

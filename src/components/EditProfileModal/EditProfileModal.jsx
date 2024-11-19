@@ -36,6 +36,7 @@ export default function EditProfileModal({ isOpen, onClose, onProfileSubmit }) {
       isOpen={isOpen}
       onClose={onClose}
       onSubmit={handleProfileSubmit}
+      className="modal__save-button"
     >
       <label htmlFor="name" className="modal__label">
         Name *{" "}
@@ -45,7 +46,7 @@ export default function EditProfileModal({ isOpen, onClose, onProfileSubmit }) {
           autoComplete="off"
           type="text"
           className="modal__input"
-          id="name"
+          id="modal-name"
           placeholder="Enter your name"
           onChange={handleNameChange}
         />
@@ -58,7 +59,7 @@ export default function EditProfileModal({ isOpen, onClose, onProfileSubmit }) {
           autoComplete="off"
           type="url"
           className="modal__input"
-          id="avatar"
+          id="modal-avatar"
           placeholder="Enter avatar URL"
           onChange={handleAvatarChange}
         />

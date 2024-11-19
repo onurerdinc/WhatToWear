@@ -66,7 +66,6 @@ function App() {
       auth.login({ email, password });
       setIsLoggedIn(true);
       closeActiveModal();
-      navigate("/profile");
     });
   };
 
