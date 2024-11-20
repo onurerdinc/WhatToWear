@@ -61,22 +61,31 @@ function App() {
 
   const onSignUp = ({ name, email, password, avatar }) => {
     const userProfile = { name, email, password, avatar };
-    auth.register(userProfile).then((res) => {
-      onLogin({ email, password });
-      closeActiveModal();
-    });
+    auth
+      .register(userProfile)
+      .then((res) => {
+        onLogin({ email, password });
+        closeActiveModal();
+      })
+      .catch((err) => console.error("Error during sign up:", err));
   };
 
   const onLogin = ({ email, password }) => {
-    auth.login({ email, password }).then((res) => {
-      localStorage.setItem("jwt", res.token);
-      auth.getUserProfile(res.token).then((userProfile) => {
-        setCurrentUser(userProfile);
-        setIsLoggedIn(true);
-      });
-      closeActiveModal();
-      navigate("/profile");
-    });
+    auth
+      .login({ email, password })
+      .then((res) => {
+        localStorage.setItem("jwt", res.token);
+        auth
+          .getUserProfile(res.token)
+          .then((userProfile) => {
+            setCurrentUser(userProfile);
+            setIsLoggedIn(true);
+          })
+          .catch((err) => console.error("Error fetching user profile:", err));
+        closeActiveModal();
+        navigate("/profile");
+      })
+      .catch((err) => console.error("Error during login:", err));
   };
 
   const onSignOut = () => {
@@ -97,14 +106,16 @@ function App() {
           );
           setIsLiked(true);
         })
-      : removeCardLike(_id, token).then((updatedCard) => {
-          setClothingItems((cards) =>
-            cards.map((item) =>
-              item._id === _id ? { ...item, likes: updatedCard.likes } : item
-            )
-          );
-          setIsLiked(false);
-        });
+      : removeCardLike(_id, token)
+          .then((updatedCard) => {
+            setClothingItems((cards) =>
+              cards.map((item) =>
+                item._id === _id ? { ...item, likes: updatedCard.likes } : item
+              )
+            );
+            setIsLiked(false);
+          })
+          .catch((err) => console.error("Error toggling card like:", err));
   };
 
   const handleCardDelete = () => {
@@ -115,7 +126,7 @@ function App() {
         );
         closeActiveModal();
       })
-      .catch(console.error);
+      .catch((err) => console.error("Error deleting card:", err));
   };
 
   const handleCardClick = (card) => {
@@ -141,21 +152,24 @@ function App() {
 
   const onProfileSubmit = ({ name, avatar }) => {
     const token = localStorage.getItem("jwt");
-
     auth
       .editProfile({ name, avatar }, token)
       .then((res) => {
         setCurrentUser({ ...currentUser, ...res });
         closeActiveModal();
       })
-      .catch((err) => console.error(err));
+      .catch((err) => console.error("Error updating profile:", err));
   };
 
   const handleOnAddItem = async (newItem) => {
     const token = localStorage.getItem("jwt");
-    const addedItem = await addItem(newItem, token);
-    setClothingItems((prevItems) => [addedItem.data, ...prevItems]);
-    closeActiveModal();
+    try {
+      const addedItem = await addItem(newItem, token);
+      setClothingItems((prevItems) => [addedItem.data, ...prevItems]);
+      closeActiveModal();
+    } catch (err) {
+      console.error("Error adding new item:", err);
+    }
   };
 
   const handleToggleSwitchChange = () => {
@@ -169,7 +183,7 @@ function App() {
         const filteredData = filterWeatherData(data);
         setWeatherData(filteredData);
       })
-      .catch(console.error);
+      .catch((err) => console.error("Error fetching weather data:", err));
   }, []);
 
   useEffect(() => {
@@ -177,7 +191,7 @@ function App() {
       .then((data) => {
         setClothingItems(data);
       })
-      .catch(console.error);
+      .catch((err) => console.error("Error fetching items:", err));
   }, []);
 
   useEffect(() => {
@@ -202,14 +216,12 @@ function App() {
     const token = localStorage.getItem("jwt");
     if (token) {
       auth
-        .getUserProfile()
+        .getUserProfile(token)
         .then((res) => {
           setCurrentUser(res);
           setIsLoggedIn(true);
         })
-        .catch((err) => {
-          console.error("Error fetching user profile:", err);
-        });
+        .catch((err) => console.error("Error fetching user profile:", err));
     }
   }, []);
 
