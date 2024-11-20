@@ -31,7 +31,6 @@
 .sidebar__buttons {
   display: flex;
   flex-direction: column;
-
   margin-left: 40px;
   padding: 0;
 }
@@ -58,4 +57,5 @@
   padding: 0;
   margin-right: 0px;
   align-self: flex-start;
+  cursor: pointer;
 }
