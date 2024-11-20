@@ -11,6 +11,10 @@ const ItemCard = ({ item, onCardClick, isLoggedIn, onCardLike }) => {
   const isLiked =
     item.likes && currentUser ? item.likes.includes(currentUser?._id) : false;
 
+  const handleCardClick = () => {
+    onCardClick(item);
+  };
+
   return (
     <div className="cards__container">
       <div className="cards__item_container">
@@ -37,7 +41,7 @@ const ItemCard = ({ item, onCardClick, isLoggedIn, onCardLike }) => {
           className="cards__image"
           alt={item.name}
           src={item.imageUrl}
-          onClick={() => onCardClick(item)}
+          onClick={handleCardClick}
         ></img>
       </div>
     </div>

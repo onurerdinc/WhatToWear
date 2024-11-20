@@ -5,11 +5,11 @@ import { CurrentUserContext } from "../../contexts/CurrentUserContext.jsx";
 
 function ClothesSection({
   handleAddClick,
-  handleCardClick,
   clothingItems,
   isLiked,
   onCardLike,
   isLoggedIn,
+  onCardClick,
 }) {
   const currentUser = useContext(CurrentUserContext);
 
@@ -34,7 +34,7 @@ function ClothesSection({
             <ItemCard
               key={item?._id}
               item={item}
-              handleCardClick={handleCardClick}
+              onCardClick={onCardClick}
               onCardLike={onCardLike}
               isLiked={isLiked}
               isLoggedIn={isLoggedIn}
