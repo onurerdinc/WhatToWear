@@ -40,7 +40,7 @@ const RegisterModal = ({ isOpen, onRegister, handleLoginRoute, onClose }) => {
       redirectButton={
         <button
           type="button"
-          onClick={handleRegister}
+          onClick={handleLoginRoute}
           className="modal__redirect-btn"
         >
           Or Login
