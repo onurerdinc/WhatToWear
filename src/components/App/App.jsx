@@ -145,7 +145,7 @@ function App() {
     auth
       .editProfile({ name, avatar }, token)
       .then((res) => {
-        setCurrentUser(res);
+        setCurrentUser({ ...currentUser, ...res });
         closeActiveModal();
       })
       .catch((err) => console.error(err));
