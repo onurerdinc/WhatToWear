@@ -2,7 +2,7 @@ import React from "react";
 import "../ItemCard/ItemCard.css";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import { useState, useContext } from "react";
-import LikeImage from "..//../assets/LikeImage.png";
+import LikeImage from "../../assets/LikeImage.png";
 import LikedImage from "../../assets/LikedImage.png";
 
 const ItemCard = ({ item, onCardClick, isLoggedIn, onCardLike }) => {

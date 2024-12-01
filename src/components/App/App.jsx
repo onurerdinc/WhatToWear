@@ -104,7 +104,6 @@ function App() {
               item._id === _id ? { ...item, likes: updatedCard.likes } : item
             )
           );
-          setIsLiked(true);
         })
       : removeCardLike(_id, token)
           .then((updatedCard) => {
@@ -113,7 +112,6 @@ function App() {
                 item._id === _id ? { ...item, likes: updatedCard.likes } : item
               )
             );
-            setIsLiked(false);
           })
           .catch((err) => console.error("Error toggling card like:", err));
   };
@@ -216,12 +214,14 @@ function App() {
     const token = localStorage.getItem("jwt");
     if (token) {
       auth
-        .getUserProfile(token)
+        .getUserProfile()
         .then((res) => {
           setCurrentUser(res);
           setIsLoggedIn(true);
         })
-        .catch((err) => console.error("Error fetching user profile:", err));
+        .catch((err) => {
+          console.error("Error fetching user profile:", err);
+        });
     }
   }, []);
 
